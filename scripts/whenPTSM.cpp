@@ -8,14 +8,15 @@
  *
  **/
 
-#include "../src/PTAfunctions.h"
+//Needed for analyzing the phase transition:
+#include "../bin/PTAfunctions.h"
 //Include your model here:
 #include "../models/SM.h"
 
 int main(int argc, char **argv)
 {
     /*
-        This is an example program that calculates when the electroweak phase transition occurs in the standard model. It can be modified to work for the model of your choice (see the manual for instructions on how to implement a model), or you can tweak the settings to see how the result is affected.
+        This is an example program that calculates when the electroweak phase transition occurs in the standard model. It can be modified to work for the model of your choice, or you can tweak the settings to see how the result is affected.
 
         Author: Johan Löfgren
 
@@ -40,14 +41,10 @@ int main(int argc, char **argv)
 
     //The parameters of the potential of the SM, (mu2, lambda):
     float_t mh = 65.0855;
-    //float_t mh = 34.352400;
-    //float_t mh = 200;
-    //float_t mh = mH;
     float_t mh2 = mh * mh;
     float_t mu2 = 0.5 * mh2;
     float_t lambda = 0.5 * mh2 / VEV2;
     printf("mu2 = %f, lambda = %f\n",mu2,lambda);
-    //float_t par[2] = {7887.6799999999985, 0.13010698760657471};
     float_t par[2] = {mu2, lambda};
     const size_t numParameters = sizeof(par)/sizeof(par[0]);
 
@@ -90,6 +87,8 @@ int main(int argc, char **argv)
     //options.maxIter = 1000;
     //----------------------------------------------------------
 
+
+    //If you wish to study gauge dependence, you can try changing xi here.
     mod->setGaugeXi(0.0);
     float_t xi = mod->getGaugeXi();
     printf("xi = %f\n",xi);
@@ -100,17 +99,14 @@ int main(int argc, char **argv)
     float_t TcL;
     float_t vcL;
     float_t TcPRM;
-    float_t TcPRM_R;
     float_t vcPRM;
-    float_t vcPRM_R;
     start = clock();
     float_t T0=0;
     for (int i = 0; i <N; ++i)
     {
         T0 = mod->getT0();
-        whenPT_L2(mod, TcL, vcL, errorFlagL, options);
+        whenPT_L_FAST(mod, TcL, vcL, errorFlagL, options);
         whenPT_PRM(mod, TcPRM, vcPRM, errorFlagPRM);
-        whenPT_PRM_R(mod, TcPRM_R, vcPRM_R, errorFlagPRM);
     }
     end = clock();
     printtime(start, end);
@@ -131,9 +127,6 @@ int main(int argc, char **argv)
     printf("PRM phase transition temperature = %f GeV\n",TcPRM );
     printf("PRM phase transition VEV = %f GeV\n",vcPRM );
     printf("PRM vc / Tc = %f\n",vcPRM/TcPRM );
-    printf("PRM phase transition temperature RESUMMED = %f GeV\n",TcPRM_R );
-    printf("PRM phase transition VEV RESUMMED = %f GeV\n",vcPRM_R );
-    printf("PRM vc / Tc RESUMMED = %f\n",vcPRM_R/TcPRM_R );    
     printf("------------------------------------------------\n");
 
 

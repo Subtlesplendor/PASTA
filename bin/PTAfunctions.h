@@ -24,7 +24,7 @@ double my_deltaPotResummedFunction (double T, void *params);
 void whenPT_PRM(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag);
 void whenPT_PRM_R(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag);
 void whenPT_L(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag, minOptions_t options);
-void whenPT_L2(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag, minOptions_t options);
+void whenPT_L_FAST(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag, minOptions_t options);
 int whichPhase(gsl_multimin_fminimizer *s,gsl_vector* ss, gsl_vector* min, gsl_multimin_function my_func, Model* model, size_t& errorFlag, minOptions_t options);
 int whichPhase2(gsl_multimin_fminimizer *s,gsl_vector* ss, gsl_vector* min, gsl_multimin_function my_func, Model* model, size_t& errorFlag, minOptions_t options);
 

@@ -73,6 +73,7 @@ double my_deltaPotResummedFunction (double T, void *params)
 
 //-------------Methods which are used to study the PT---------------
 
+//Resummed:
 void whenPT_PRM_R(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag)
 {
 
@@ -213,6 +214,8 @@ void whenPT_PRM(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag)
 
 //This next method uses the traditional, gauge-dependent, method in Landau gauge.
 
+
+//Uses a linear temperature search
 void whenPT_L(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag, minOptions_t options)
 {
 
@@ -313,7 +316,9 @@ void whenPT_L(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag, minOpti
 
 }
 
-void whenPT_L2(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag, minOptions_t options)
+
+//Uses a bijection temperature search:
+void whenPT_L_FAST(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag, minOptions_t options)
 {
 
     //------------------initializing minimizer--------------------

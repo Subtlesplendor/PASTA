@@ -135,12 +135,12 @@ public:
     //Numerical functions:
     float_t gbSelfEnergy(float_t* fields,size_t dirIndex);
     float_t oneLoopLevel(float_t* fields) const;
-    float_t oneLoopLevelResummed(float_t* fields);
+    float_t oneLoopLevelResummed(float_t* fields); //Needs work.
     float_t tempPot(const float_t x, bool fermionFlag) const;
     float_t tempPotDeriv(const float_t x, bool fermionFlag) const;
     float_t totalPot(float_t* fields) const;
     float_t deltaPot(float_t* fields) const;
-    float_t deltaPotResummed(float_t* fields);    
+    float_t deltaPotResummed(float_t* fields);   //Needs work.
     virtual float_t betaFunctions(size_t parIndex) const;
     virtual double detM(float_t T) const;
     virtual float_t treeLevel(float_t* fields) const = 0;

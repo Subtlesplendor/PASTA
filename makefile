@@ -13,17 +13,19 @@ OPTIMIZATION = -march=native -O3
 #Compiler flags
 CXXFLAGS = -Wall -pedantic $(OPTIMIZATION) $(DEBUG)
 #directory where user written programs are located:
-VPATH = usr
+VPATH = scripts
 
 #---------------Handles the linking of the library-------------------
 OBJDIR=lib
 MODOBJDIR=$(OBJDIR)
 LIBDIR=$(OBJDIR)
-SRCDIR=src
+SRCDIR=bin
 MODDIR=models
 SOURCES= $(addprefix $(SRCDIR)/,*.cpp)
 MODELS= $(addprefix $(MODDIR)/,*.cpp)
+SCRIPTS = $(addprefix $(VPATH)/,*.cpp)
 OBJECTS :=  $(notdir $(patsubst %.cpp,%.o,$(wildcard $(SOURCES))))
+FINALS :=  $(notdir $(patsubst %.cpp,%,$(wildcard $(SCRIPTS))))
 MODOBJECTS :=  $(notdir $(patsubst %.cpp,%.o,$(wildcard $(MODELS))))
 LIB=libPTA.a
 LDFLAGS+=-L./$(LIBDIR) -lPTA
@@ -51,3 +53,6 @@ cleanlib:
 	@ echo "Cleaning library"
 	@ rm -f $(addprefix $(OBJDIR)/, *.o)
 	@ rm -f $(addprefix $(LIBDIR)/, $(LIB)) 
+	@ rm -rf *.dSYM
+	@ rm -f $(addprefix ./, $(FINALS))
+

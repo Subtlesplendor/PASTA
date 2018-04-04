@@ -1,7 +1,7 @@
 #ifndef SM_H
 #define SM_H
 
-#include "../src/AbstractModel.h"
+#include "../bin/AbstractModel.h"
 
 /*This is the model file for the standard model (SM). It contains, in the following order,
 

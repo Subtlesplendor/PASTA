@@ -91,11 +91,15 @@ float_t SM::sphScale() const
 
 //----------------------------Particles------------------------
 
+
+
 float_t hboson :: getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const
 {
 
     return 3*par[1]*fields[0]*fields[0]  - par[0];
 }
+
+
 
 float_t chibosonN :: getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const
 {

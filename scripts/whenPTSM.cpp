@@ -38,14 +38,19 @@ int main(int argc, char **argv)
 
     //-------------------Options for the potential: -----------------
     const size_t scheme = 1; //This chooses renormalization scheme. I recommend leaving this equal to 1, which is MSbar, since the other schemes are not properly tested.
+
     const float_t scale = 100*100; // The value of the renormalization parameter.
 
     //The parameters of the potential of the SM, (mu2, lambda):
     float_t mh = 65.0855;
     float_t mh2 = mh * mh;
+
     float_t mu2 = 0.5 * mh2;
     float_t lambda = 0.5 * mh2 / VEV2;
+
     printf("mu2 = %f, lambda = %f\n",mu2,lambda);
+
+
     float_t par[2] = {mu2, lambda};
     const size_t numParameters = sizeof(par)/sizeof(par[0]);
 
@@ -66,7 +71,9 @@ int main(int argc, char **argv)
 
     //Creating the potential:
     Model* mod;
+
     mod = new SM(par, numParameters, particles, numParticles, scale, scheme); //Here you should create an instance of the model you wish to study.
+
     float_t treeMin[numVar] = {};
     for (size_t i = 0; i < numVar; ++i)
     {
@@ -105,6 +112,7 @@ int main(int argc, char **argv)
     float_t vcPRM;
     float_t T0=0;    
     start = clock();
+    
     for (int i = 0; i <N; ++i)
     {
         T0 = mod->getT0();

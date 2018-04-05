@@ -45,6 +45,11 @@ public:
 	{
 		findTreemin();
         size_t errorFlag = findT0();
+        if (errorFlag!=0)
+        {
+            printf("WARNING: error finding T0 when constructing SM object.\n");
+        }
+
         setCounterterms();
 	};
 
@@ -57,13 +62,13 @@ public:
     void findTreemin();
     size_t findT0();
     void findSphscale(float_t Tc, float_t& vc, size_t& errorFlag);
-	void findTreePotDeriv(float_t* fields);
+	// void findTreePotDeriv(float_t* fields);
 
     //Numerical functions:
     float_t treeLevel(float_t* fields) const;
     float_t htPot(float_t* fields) const;
     //double detM(float_t T) const;
-    float_t betaFunctions(size_t parIndex) const;
+    // float_t betaFunctions(size_t parIndex) const;
     float_t sphScale() const;
 
 };
@@ -85,7 +90,7 @@ public:
     //virtual ~hboson(){};
 
  	virtual float_t getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const;
-    virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
+    // virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
 };
 
 
@@ -102,7 +107,7 @@ public:
     //virtual ~chibosonN(){};
 
  	virtual float_t getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const;
-    virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
+    //virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
 };
 
 class chibosonC : public Particle
@@ -118,7 +123,7 @@ public:
     //virtual ~chibosonC(){};
 
     virtual float_t getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const;
-    virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
+    //virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
 };
 
 
@@ -135,7 +140,7 @@ public:
     //virtual ~wboson(){};
 
  	virtual float_t getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const;
-    virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
+    //virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
 };
 
 
@@ -152,7 +157,7 @@ public:
    	//virtual ~zboson(){};
 
  	virtual float_t getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const;
-    virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
+    //virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
 };
 
 
@@ -169,7 +174,7 @@ public:
     //virtual ~topquark(){};
 
  	virtual float_t getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const;
-    virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
+    //virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
 };
 
 class wghost : public Particle
@@ -183,7 +188,7 @@ public:
     //virtual ~wghost(){};
 
     virtual float_t getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const;
-    virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
+    //virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
 };
 
 class zghost : public Particle
@@ -200,7 +205,7 @@ public:
     //virtual ~zghost(){};
 
     virtual float_t getFieldmass(const float_t* par, const float_t xi, const float_t* fields, const float_t T) const;
-    virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
+    //virtual float_t* getFieldmassDeriv(const float_t* par, const float_t xi, const float_t* fields, const float_t T);
 };
 
 //-----------------------------------------------------

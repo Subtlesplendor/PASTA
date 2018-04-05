@@ -53,6 +53,9 @@ cleanlib:
 	@ echo "Cleaning library"
 	@ rm -f $(addprefix $(OBJDIR)/, *.o)
 	@ rm -f $(addprefix $(LIBDIR)/, $(LIB)) 
+
+
+clean: cleanlib
+	@ echo "Cleaning scripts"	
 	@ rm -rf *.dSYM
 	@ rm -f $(addprefix ./, $(FINALS))
-

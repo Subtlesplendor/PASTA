@@ -264,10 +264,10 @@ void whenPT_L(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag, minOpti
 
 	gsl_vector_set_all(min, 246.234133);
 	vc = gsl_blas_dnrm2 (min);
-	float_t tempsize = gsl_blas_dnrm2 (min)/2.0;
+	//float_t tempsize = gsl_blas_dnrm2 (min)/2.0;
 
 	float_t intervalLength = 5;
-	float_t newTemp = 0.0;
+	float_t newTemp = minTemp;
 
 	while( (intervalLength >= tempTol) && (errorFlag==0) )
 	{
@@ -366,7 +366,7 @@ void whenPT_L_FAST(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag, mi
 	float_t newTemp = minTemp + intervalLength/2.0;
 	gsl_vector_set_all(min, 246.234133);
 	vc = gsl_blas_dnrm2 (min);
-	float_t tempsize = gsl_blas_dnrm2 (min)/2.0;
+	float_t tempsize;
 	//printf("tempsize = %f\n",tempsize );
 
 	while( (intervalLength >= tempTol) && (errorFlag==0) )

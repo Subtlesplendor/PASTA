@@ -386,7 +386,7 @@ double Model::detM(float_t T) const
 
 void Model::findTreePotDeriv(float_t* fields)
 {
-    float_t* tempDeriv;
+    float_t* tempDeriv = 0;
     std::fill_n(tempDeriv, m_numVar,0.0);
     setTreeDeriv(tempDeriv);
     delete[] tempDeriv;

@@ -91,6 +91,6 @@ size_t Minimizer(minOptions_t options, gsl_multimin_fminimizer *s,gsl_vector* mi
 		return 0;
 	}
 
-	return 3;
+	return 2;
 
 }

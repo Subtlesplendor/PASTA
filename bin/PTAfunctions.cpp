@@ -200,7 +200,7 @@ void whenPT_PRM(Model* model, float_t& Tc, float_t& vc, size_t& errorFlag)
     if (status != GSL_SUCCESS)
     {
         Tc = 0.0;
-        errorFlag = 1;
+        errorFlag = 2;
     }
     else
     {

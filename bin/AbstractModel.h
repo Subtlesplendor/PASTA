@@ -127,7 +127,7 @@ public:
     virtual size_t findT0();
     virtual void findSphscale(float_t Tc, float_t& vc, size_t& errorFlag);
     //virtual void findOneLoopLevelDeriv(float_t* fields);
-    virtual void findTreemin() = 0;
+    virtual void findTreemin() = 0; //MUST be overwritten in the inheriting class
     virtual void findTreePotDeriv(float_t* fields);
     void findOneLoopLevelDeriv(float_t* fields);
     void findTotalPotDeriv(float_t* fields);
@@ -143,8 +143,8 @@ public:
     float_t deltaPotResummed(float_t* fields);   //Needs work.
     virtual float_t betaFunctions(size_t parIndex) const;
     virtual double detM(float_t T) const;
-    virtual float_t treeLevel(float_t* fields) const = 0;
-    virtual float_t htPot(float_t* fields) const = 0;
+    virtual float_t treeLevel(float_t* fields) const = 0; //MUST be overwritten in the inheriting class
+    virtual float_t htPot(float_t* fields) const = 0; //MUST be overwritten in the inheriting class
     float_t getphi1();
 
 };

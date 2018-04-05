@@ -10,6 +10,7 @@
 
 //Needed for analyzing the phase transition:
 #include "../bin/PTAfunctions.h"
+
 //Include your model here:
 #include "../models/SM.h"
 
@@ -36,8 +37,8 @@ int main(int argc, char **argv)
     const int N = 1;
 
     //-------------------Options for the potential: -----------------
-    const size_t scheme = 1;
-    const float_t scale = 100*100;
+    const size_t scheme = 1; //This chooses renormalization scheme. I recommend leaving this equal to 1, which is MSbar, since the other schemes are not properly tested.
+    const float_t scale = 100*100; // The value of the renormalization parameter.
 
     //The parameters of the potential of the SM, (mu2, lambda):
     float_t mh = 65.0855;
@@ -50,7 +51,7 @@ int main(int argc, char **argv)
 
     const size_t numVar = 1; // Only one field obtains a vev
 
-    // The particles included in the effective potential
+    // The particles included in the effective potential. In order to test gauge dependence, I have included here also 
     const size_t numParticles = 8;
     Particle* particles[numParticles];
 
@@ -65,7 +66,7 @@ int main(int argc, char **argv)
 
     //Creating the potential:
     Model* mod;
-    mod = new SM(par, numParameters, particles, numParticles, scale, scheme);
+    mod = new SM(par, numParameters, particles, numParticles, scale, scheme); //Here you should create an instance of the model you wish to study.
     float_t treeMin[numVar] = {};
     for (size_t i = 0; i < numVar; ++i)
     {
@@ -77,14 +78,16 @@ int main(int argc, char **argv)
 
     //------------------Options for minimizer--------------------
     minOptions_t options;
-    //Uncomment a line and change it to modify an option.
-    //options.stepSize = 1;
-    //options.maxTemp = 1000;
-    //options.minTemp = 0;
-    //options.tol = 1e-3;
-    //options.locTol = 4 * options.tol;
-    //options.tempTol = options.tol;
-    //options.maxIter = 1000;
+    //Uncomment a line and change it to modify an option. The default options can be found in bin/common.h
+
+    //options.stepSize = 1; //How large steps the minimizer should use originally.
+    //options.maxTemp = 1000;  // The max temp at which the PT can happen.
+    //options.minTemp = 0; // The min temp
+    //options.tol = 1e-3; // The tolerance of the minimizer, i.e. how close should it be before it terminates the search.
+    //options.locTol = 4 * options.tol; // The tolerance which determines how close to the origin the minimum should be in order for the program to classify this as the symmetric phase.
+    //options.tempTol = options.tol; // How close to the critical temperature should we get before we terminate the search?
+    //options.fieldMax = 500; // How far away from the origin do we want to consider possible VEVs? This is necessary to make sure the minimizer does not diverge.
+    //options.maxIter = 1000; // How many iterations we can let the minimizer try before we stop it.
     //----------------------------------------------------------
 
 
@@ -100,8 +103,8 @@ int main(int argc, char **argv)
     float_t vcL;
     float_t TcPRM;
     float_t vcPRM;
+    float_t T0=0;    
     start = clock();
-    float_t T0=0;
     for (int i = 0; i <N; ++i)
     {
         T0 = mod->getT0();
